@@ -132,6 +132,25 @@ export default function Archive({ posters }: { posters: Poster[] }) {
                 src={imageUrlFor(poster, lightboxImageWidth())}
                 alt={`Plakat von ${poster.name}, ${poster.semester}`}
               />
+              {/* Left/right halves of the poster step through; clicks anywhere else close. */}
+              <button
+                type="button"
+                className="lightbox__nav lightbox__nav--prev"
+                aria-label="Vorheriges Plakat"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  step(-1)
+                }}
+              />
+              <button
+                type="button"
+                className="lightbox__nav lightbox__nav--next"
+                aria-label="Nächstes Plakat"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  step(1)
+                }}
+              />
             </div>
             <figcaption className="caption">
               <span>{poster.name}</span>
