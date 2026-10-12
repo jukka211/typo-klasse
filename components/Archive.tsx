@@ -146,7 +146,7 @@ export default function Archive({ posters }: { posters: Poster[] }) {
 
 /** CSS width of the image area inside the lightbox frame (89% of the frame, see .frame img). */
 function lightboxImageWidth() {
-  const margin = window.innerWidth <= 820 ? 16 : 20
+  const margin = 10 // --margin in globals.css
   const frame = Math.min(window.innerWidth - 2 * margin, (window.innerHeight - LIGHTBOX_CHROME_PX) * RATIO)
   return frame * 0.89
 }
