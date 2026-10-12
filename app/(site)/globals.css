@@ -218,12 +218,12 @@ button {
 
 .lightbox__nav--prev {
   left: 0;
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none' stroke-linecap='square'%3E%3Cpath d='M25 16H8M15 9l-7 7 7 7' stroke='%23fff' stroke-width='5'/%3E%3Cpath d='M25 16H8M15 9l-7 7 7 7' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") 16 16, w-resize;
+  cursor: w-resize;
 }
 
 .lightbox__nav--next {
   right: 0;
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' fill='none' stroke-linecap='square'%3E%3Cpath d='M7 16h17M17 9l7 7-7 7' stroke='%23fff' stroke-width='5'/%3E%3Cpath d='M7 16h17M17 9l7 7-7 7' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E") 16 16, e-resize;
+  cursor: e-resize;
 }
 
 .lightbox__nav:focus-visible { outline-offset: -4px; }
