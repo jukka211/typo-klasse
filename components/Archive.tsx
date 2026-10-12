@@ -4,8 +4,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { imageSrcSet, imageUrl, imageUrlFor } from '@/lib/image'
-import { SEMESTERS } from '@/lib/semesters'
+import { introSeen, rememberedSemester } from '@/lib/archive-state'
 import type { Poster } from '@/sanity/lib/posters'
+import Header from './Header'
 import Intro from './Intro'
 
 // Roughly how wide a grid image is on screen, so the browser picks the right srcset entry.
@@ -15,8 +16,8 @@ const LIGHTBOX_CHROME_PX = 56
 const RATIO = 455 / 609
 
 export default function Archive({ posters }: { posters: Poster[] }) {
-  const [showIntro, setShowIntro] = useState(posters.length > 0)
-  const [semester, setSemester] = useState<string | null>(null)
+  const [showIntro, setShowIntro] = useState(posters.length > 0 && !introSeen())
+  const [semester, setSemester] = useState(rememberedSemester)
   const [current, setCurrent] = useState<number | null>(null)
   const dialogRef = useRef<HTMLDialogElement>(null)
   const cardRefs = useRef<(HTMLButtonElement | null)[]>([])
@@ -50,25 +51,7 @@ export default function Archive({ posters }: { posters: Poster[] }) {
     <>
       {showIntro && <Intro posters={posters} onDone={closeIntro} />}
 
-      <header className="bar">
-        <h1 className="bar__title">Typo Klasse Prof. Kirchschläger</h1>
-        <div className="filter" role="group" aria-label="Nach Semester filtern">
-          <span>Filter:</span>
-          <div className="filter__chips">
-            {SEMESTERS.map((s) => (
-              <button
-                key={s}
-                type="button"
-                className="chip"
-                aria-pressed={semester === s}
-                onClick={() => setSemester(semester === s ? null : s)}
-              >
-                {s}
-              </button>
-            ))}
-          </div>
-        </div>
-      </header>
+      <Header page="archive" semester={semester} onSemesterChange={setSemester} />
 
       <main>
         <ul className="grid">
